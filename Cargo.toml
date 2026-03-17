@@ -6,8 +6,11 @@ edition = "2024"
 [dependencies]
 axonml = { version = "0.4.1", features = ["full"] }
 clap = { version = "4.5.53", features = ["derive"] }
+figlet-rs = "1.0.0"
 image = "0.25.9"
 image_processing = "0.1.0"
 imageproc = "0.25.0"
 ndarray = "0.17.1"
 polars = "0.52.0"
+rayon = "1.11.0"
+smartcore = "0.4.9"
