@@ -11,6 +11,7 @@ use crate::args::CommandParse;
 use crate::args::Commands;
 use crate::train::conv2d;
 use clap::Parser;
+use figlet_rs::FIGfont;
 
 /*
 Gaurav Sablok
@@ -18,9 +19,9 @@ codeprog@icloud.com
 */
 
 fn main() {
-    // let fontgenerate = FIGfont::standard().unwrap();
-    // let repgenerate = fontgenerate.convert("co2model");
-    // println!("{}", repgenerate.unwrap());
+    let fontgenerate = FIGfont::standard().unwrap();
+    let repgenerate = fontgenerate.convert("axonimage");
+    println!("{}", repgenerate.unwrap());
 
     let args = CommandParse::parse();
     match &args.command {

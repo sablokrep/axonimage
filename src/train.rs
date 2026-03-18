@@ -5,21 +5,22 @@ use axonml::nn::Conv2d;
 use axonml::nn::CrossEntropyLoss;
 use axonml::nn::Linear;
 use axonml::nn::MaxPool2d;
-use axonml::nn::Module;
 use axonml::nn::ReLU;
 use axonml::nn::Sequential;
+use axonml::nn::prelude::*;
 use axonml::optim::Adam;
 use axonml::optim::Optimizer;
 use axonml::prelude::Variable;
 use axonml::tensor::Tensor;
-use std::error::Error;
-
+use axonml_nn::prelude::*;
+use std::io::Result;
 /*
 Gaurav Sablok
 codeprog@icloud.com
+
 */
 
-pub fn conv2d(healthy: &str, leached: &str) -> Result<String, Box<dyn Error>> {
+pub fn conv2d(healthy: &str, leached: &str) -> Result<String> {
     let model = Sequential::new()
         .add(Conv2d::new(1, 32, 3))
         .add(ReLU)
@@ -27,7 +28,7 @@ pub fn conv2d(healthy: &str, leached: &str) -> Result<String, Box<dyn Error>> {
         .add(Conv2d::new(32, 64, 3))
         .add(ReLU)
         .add(MaxPool2d::new(2))
-        .add(Flatten)
+        //.add(Flatten::new())
         .add(Linear::new(16, 1));
 
     let mut optimizer = Adam::new(model.parameters(), 0.001);
@@ -39,8 +40,8 @@ pub fn conv2d(healthy: &str, leached: &str) -> Result<String, Box<dyn Error>> {
     let mut combineddata: Vec<Vec<f32>> = Vec::new();
 
     for i in 0..datasethealthy.0.len() {
-        combineddata.push(datasethealthy.0[i]);
-        combineddata.push(diseased.0[i]);
+        combineddata.push(datasethealthy.0[i].clone());
+        combineddata.push(diseased.0[i].clone());
         combined.push(datasethealthy.1[i]);
         combined.push(diseased.1[i]);
     }

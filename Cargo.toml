@@ -1,12 +1,13 @@
 [package]
-name = "imageclass"
+name = "axonimage"
 version = "0.1.0"
 edition = "2024"
 
 [dependencies]
 axonml = { version = "0.4.1", features = ["full"] }
+axonml-nn = "0.4.1"
 clap = { version = "4.5.53", features = ["derive"] }
-figlet-rs = "1.0.0"
+figlet-rs = "0.1.5"
 image = "0.25.9"
 image_processing = "0.1.0"
 imageproc = "0.25.0"
