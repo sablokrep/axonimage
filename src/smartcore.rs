@@ -13,7 +13,7 @@ pub fn smartcore_healthy(
     height: &str,
 ) -> Result<Vec<Vec<f32>>, Box<dyn Error>> {
     let mut imagetensor: Vec<Vec<f32>> = Vec::new();
-    for i in fs::read_dir(pathdir.to_string())? {
+    for i in fs::read_dir(pathdir)? {
         let vecinter: Vec<Vec<u8>> = Vec::new();
         let openfile = i?.path();
         let path_str = openfile.to_str().unwrap();
@@ -39,7 +39,7 @@ pub fn smartcore_diseased(
     height: &str,
 ) -> Result<Vec<Vec<f32>>, Box<dyn Error>> {
     let mut imagetensor: Vec<Vec<f32>> = Vec::new();
-    for i in fs::read_dir(pathdir.to_string())? {
+    for i in fs::read_dir(pathdir)? {
         let openfile = i?.path();
         let path_str = openfile.to_str().unwrap();
         let imageopen = image::open(path_str).expect("file not present");

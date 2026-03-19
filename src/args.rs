@@ -26,4 +26,17 @@ pub enum Commands {
         /// thread for the analysis
         thread: String,
     },
+    /// RandomForest
+    RandomForest {
+        /// path for the folder for the coral normal images
+        normal: String,
+        /// path for the folder with the coral bleached images
+        bleached: String,
+        /// width of the samples
+        width: String,
+        /// height of the samples
+        height: String,
+        /// threads for the analysis
+        thread: String,
+    },
 }

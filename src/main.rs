@@ -9,6 +9,7 @@ mod smartun;
 mod train;
 use crate::args::CommandParse;
 use crate::args::Commands;
+use crate::smartun::smallimage;
 use crate::train::conv2d;
 use clap::Parser;
 use figlet_rs::FIGfont;
@@ -38,6 +39,23 @@ fn main() {
             pool.install(|| {
                 let runmodel = conv2d(&normal, &bleached).unwrap();
                 println!("The qsar modelling has finished: {}", runmodel);
+            });
+        }
+        Commands::RandomForest {
+            normal,
+            bleached,
+            width,
+            height,
+            thread,
+        } => {
+            let n_threads = thread.parse::<usize>().unwrap();
+            let pool = rayon::ThreadPoolBuilder::new()
+                .num_threads(n_threads)
+                .build()
+                .expect("threads not present");
+            pool.install(|| {
+                let functionalcall = smallimage(normal, bleached, width, height).unwrap();
+                println!("The value has finished:{}", functionalcall);
             });
         }
     }
